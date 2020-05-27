@@ -13,6 +13,7 @@ class APIClient {
  }
 
  createKudo(repo) {
+   console.log('create repo: ', repo);
    return this.perform('post', '/kudos', repo);
  }
 

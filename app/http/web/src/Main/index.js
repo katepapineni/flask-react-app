@@ -19,10 +19,10 @@ class Main extends Component {
   render() {
     return ( <Router>
       <Security issuer = {
-        'https://dev-257524.okta.com'
+        'https://dev-830893.okta.com'
       }
       client_id = {
-        '0oad0cdvd7cl5OVSd4x6'
+        '0oad0cv9i9wMwAytB4x6'
       }
       redirect_uri = {
         'http://localhost:8080/implicit/callback'

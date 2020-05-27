@@ -6,8 +6,10 @@ COLLECTION_NAME = 'kudos'
 
 class MongoRepository(object):
     def __init__(self):
-        mongo_url = os.environ.get('MONGO_URL')
+        # mongo_url = os.environ.get('MONGO_URL')
+        # mongo_url = 'mongodb://mongo_user:mongo_secret@0.0.0.0:27017/?authSource=admin'
         mongo_url = 'mongodb://mongo_user:mongo_secret@0.0.0.0:27017/?authSource=admin'
+        #mongo_url = 'mongodb+srv://my_user:pass@cluster0-yu3yw.mongodb.net/test?retryWrites=true&w=majority'
         self.db = MongoClient(mongo_url).kudos
 
     def find_all(self, selector):
