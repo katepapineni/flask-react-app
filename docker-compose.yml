@@ -3,8 +3,41 @@ services:
   mongo:
     image: mongo
     restart: always
+    volumes:
+      - mongo_db_data:/data/db
     ports:
      - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongo_user
       MONGO_INITDB_ROOT_PASSWORD: mongo_secret
+    networks:
+      - backend-network
+  
+  app:
+    build: ./app 
+    restart: always
+    volumes: 
+      - ./app:/app
+    ports: 
+      - "4433:4433"
+    networks:
+      - backend-network
+      - frontend-network
+  
+  # web:
+  #   build: ../flask-react-app/web
+  #   restart: always
+  #   volumes: 
+  #     - ../flask-react-app:/src
+  #   ports: 
+  #     - "4433:4433"
+  #   networks:
+  #     - backend-network
+  #     - frontend-network
+
+networks:
+  backend-network:
+  frontend-network:
+
+volumes:
+  mongo_db_data:

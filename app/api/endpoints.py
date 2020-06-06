@@ -1,19 +1,19 @@
-from .middlewares import login_required
+from middleware.middlewares import login_required
 from flask import Flask, json, g, request
-from app.kudo.service import Service as Kudo
-from app.kudo.schema import GithubRepoSchema
+from kudo.service import Service as Kudo
+from kudo.schema import GithubRepoSchema
 from flask_cors import CORS
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
 app = Flask(__name__)
 CORS(app)
-
+logging.basicConfig(level=logging.DEBUG)
 
 @app.route("/kudos", methods=["GET"])
-@login_required
+#@login_required
 def index():
-    return json_response(Kudo(g.user).find_all_kudos())
+    return json_response({'key': 'values'}, 200)
+    #return json_response(Kudo(g.user).find_all_kudos())
 
 
 @app.route("/kudos", methods=["POST"])
@@ -66,3 +66,6 @@ def delete(repo_id):
 
 def json_response(payload, status=200):
     return (json.dumps(payload), status, {'content-type': 'application/json'})
+
+# if __name__ == "__main__":
+#     app.run(host='0.0.0.0', debug=True, port=4433)
