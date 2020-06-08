@@ -49,7 +49,7 @@ class Home extends React.Component {
 
  resetRepos = repos => this.setState({ ...this.state, repos })
 
- isKudo = repo => this.state.kudos.find(r => r.id == repo.id)
+ isKudo = repo => this.state.kudos.find(r => r.id === repo.id)
   onKudo = (repo) => {
    this.updateBackend(repo);
  }
@@ -92,6 +92,7 @@ class Home extends React.Component {
  }
   renderRepos = (repos) => {
    if (!repos) { return [] }
+   console.log('repos: ', JSON.stringify(repos));
    return repos.map((repo) => {
      return (
        <Grid item xs={12} md={3} key={repo.id}>
