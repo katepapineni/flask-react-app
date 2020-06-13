@@ -1,17 +1,12 @@
 FROM node:13.12.0-alpine
 
-WORKDIR /src
+WORKDIR /app
 
-COPY requirements.txt ./
+COPY package*.json ./
 
-RUN pip install --no-cache-dir -r requirements.txt 
+RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
 
 COPY . .
 
-ENV PYTHONPATH=/src
-
-EXPOSE 4433 
-
-ENTRYPOINT [ "python" ] 
-
-CMD [ "app/api/endpoints.py" ] 
+CMD ["npm", "start"]
