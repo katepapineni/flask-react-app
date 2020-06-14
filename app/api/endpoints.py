@@ -10,10 +10,9 @@ CORS(app)
 logging.basicConfig(level=logging.DEBUG)
 
 @app.route("/kudos", methods=["GET"])
-#@login_required
+@login_required
 def index():
-    return json_response({'key': 'values'}, 200)
-    #return json_response(Kudo(g.user).find_all_kudos())
+    return json_response(Kudo(g.user).find_all_kudos())
 
 
 @app.route("/kudos", methods=["POST"])
